@@ -1,14 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/Home.vue'
-import WhatPage from '@/components/WhatPage.vue'
-import AboutPage from '@/components/AboutPage.vue'
-import VerifyPage from '@/components/VerifyPage.vue'
+import LayOut from '@/layout/index.vue'
+import HomePage from '@/views/Home.vue'
+import WhatPage from '@/views/WhatPage.vue'
+import AboutPage from '@/views/AboutPage.vue'
+import VerifyPage from '@/views/VerifyPage.vue'
 const routes = [
   {
     path: '/',
-    name: 'HomePage',
-    component: HomeView,
+    name: 'LayOut',
+    component: LayOut,
     children: [
+      {
+        path: '/home',
+        name: 'HomePage',
+        component: HomePage
+      },
       {
         path: '/what',
         name: 'WhatPage',
