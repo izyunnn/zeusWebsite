@@ -38,7 +38,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.about{
+@import '~@/assets/scss/color.scss';
+.about {
     background-image: url("@/assets/aboutPage/about.png");
     height: 100%;
     width: 100%;
@@ -47,7 +48,7 @@ export default {
     background-attachment: fixed;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    .about_header{
+    .about_header {
       z-index: 10;
       height: 13.921875vw;
       min-height: 235px;
@@ -57,50 +58,50 @@ export default {
       align-items: center;
       flex-direction: column;
       padding-top: 100px;
-      background: rgba(0,0,0,.5);
-      p{
-        background: linear-gradient(180deg,#c7c7c7 0%,#ffffff 25%,#c7c7c7 100%);
+      background: $black-50;
+      p {
+        background: linear-gradient(180deg,$gray 0%,$white 25%,$gray 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .header{
+      .header {
         font-size: 3vw;
         margin-bottom: 0.8vw;
         font-weight: 700;
       }
-      .engHeader{
+      .engHeader {
         font-size: 1.5vw;
         font-weight: 700;
       }
     }
-    .about_feature{
+    .about_feature {
       padding: 6.7vw 14vw;
       height: 44vw;
       display: flex;
       flex-direction: column;
-      .header{
+      .header {
         font-size: 2vw;
         font-weight: 700;
-        color: #fff;
+        color: $white;
       }
-      .title{
+      .title {
         font-size: 1.5vw;
         font-weight: 700;
         margin: 2.5vw 0 0.8vw;
-        color: #ffc485;
+        color: $orange;
       }
-      ul{
+      ul {
         width: 35vw;
         list-style: none;
-        li{
+        li {
           font-size: 1vw;
           font-weight: 500;
           margin-bottom: 1.3vw;
-          color: #fff;
+          color: $white;
         }
       }
     }
-    .about_customer{
+    .about_customer {
       background-image: url("@/assets/aboutPage/about_customer.png");
       display: flex;
       justify-content: flex-start;
@@ -112,23 +113,23 @@ export default {
       padding: 8.25vw 0;
       height: 56vw;
       text-align: center;
-      .title{
+      .title {
         font-size: 1.5vw;
         font-weight: 900;
         margin-bottom: 2.3vw;
-        color: #ffc485;
+        color: $orange;
       }
-      ul{
+      ul {
         list-style: none;
-        li{
-          color: #fff;
+        li {
+          color: $white;
           font-size: 1vw;
           font-weight: 500;
           margin-bottom: 00.8vw;
         }
       }
     }
-    .about_gameStyle{
+    .about_gameStyle {
       height: 46vw;
       display: flex;
       justify-content: center;
@@ -137,21 +138,21 @@ export default {
       .title{
         width: 40vw;
       }
-      .content{
+      .content {
         display: flex;
         text-align: center;
         justify-content: center;
         align-items: center;
         margin-bottom: 10px;
-        p{
+        p {
           font-size: 1.5vw;
           font-weight: 400;
-          color: #fff;
+          color: $white;
           width: 31.25vw;
           margin: 0 3vw;
         }
       }
-      .content::before{
+      .content::before {
         content: "";
         width: 21vw;
         height: 0.6vw;
@@ -160,7 +161,7 @@ export default {
         background-size: cover;
         background-position: 100% 50%;
       }
-      .content::after{
+      .content::after {
         content: "";
         width: 21vw;
         height: 0.6vw;

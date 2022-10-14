@@ -116,7 +116,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.verify{
+@import '~@/assets/scss/color.scss';
+.verify {
     background-image: url("@/assets/verifyPage/verifypage.png");
     height: 100%;
     width: 100%;
@@ -125,7 +126,7 @@ export default {
     background-attachment: fixed;
     background-position: 0% 50%;
     background-repeat: no-repeat;
-    .verify_header{
+    .verify_header {
       z-index: 10;
       height: 13.921875vw;
       min-height: 235px;
@@ -135,45 +136,45 @@ export default {
       align-items: center;
       flex-direction: column;
       padding-top: 100px;
-      background: rgba(0,0,0,.5);
-      p{
-        background: linear-gradient(180deg,#c7c7c7 0%,#ffffff 25%,#c7c7c7 100%);
+      background: $black-50;
+      p {
+        background: linear-gradient(180deg,$gray 0%,$white 25%,$white 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .header{
+      .header {
         font-size: 3vw;
         margin-bottom: 0.8vw;
         font-weight: 700;
       }
-      .engHeader{
+      .engHeader {
         font-size: 1.5vw;
         font-weight: 700;
       }
     }
-    .verify_sha{
+    .verify_sha {
       padding: 6.7vw 14vw;
       height: 44vw;
-      .title{
-        color: #ffc485;
+      .title {
+        color: $orange;
         font-size: 3vw;
         font-weight: 700;
         margin: 2.5vw 0 2.5vw auto;
         width: 36vw;
       }
-      ul{
+      ul {
         width: 36vw;
         margin-left: auto;
         list-style: none;
-        li{
-          color: #fff;
+        li {
+          color: $white;
           font-size: 1vw;
           font-weight: 500;
           margin-bottom: 1.2vw;
         }
       }
     }
-    .verify_step{
+    .verify_step {
       background-image: url("@/assets/verifyPage/verify_step.png");
       display: flex;
       justify-content: center;
@@ -185,28 +186,28 @@ export default {
       min-height: auto;
       height: 56vw;
       background-size: contain;
-      .title{
+      .title {
         text-align: center;
         font-size: 3vw;
         font-weight: 700;
         margin-bottom: 3.8vw;
-        color: #ffc485;
+        color: $orange;
         width: 22vw;
         height: 4vh;
       }
-      li:nth-child(1){
+      li:nth-child(1) {
         margin-bottom: 1.5vw;
         margin-left: 28vw;
       }
-      li:nth-child(2){
+      li:nth-child(2) {
         margin-bottom: 3vw;
         margin-left: 34.5vw;
       }
-      li:nth-child(3){
+      li:nth-child(3) {
         margin-bottom: 0.78vw;
         margin-left: 32.5vw;
       }
-      li{
+      li {
         width: 43%;
         display: flex;
         justify-content: flex-end;
@@ -215,23 +216,23 @@ export default {
         font-weight: 500;
         height: 7.5vw;
         padding: 0 1.32vw;
-        color: #fff;
-        .first{
+        color: $white;
+        .first {
           margin-right: 1.4vw;
           width: 9vw;
           height: 6vw;
         }
-        .second{
+        .second {
           margin-right: 2.6vw;
           width: 9vw;
           height: 4vw;
         }
-        .third{
+        .third {
           margin-right: 5vw;
           width: 14vw;
           height: 4vw;
         }
-        .content{
+        .content {
           align-items: flex-start;
           justify-content: space-evenly;
           flex-direction: column;
@@ -242,138 +243,138 @@ export default {
           height: 100%;
           word-break: break-word;
           white-space: pre-wrap;
-          color: #fff;
+          color: $white;
         }
-        .content::before{
+        .content::before {
           content: attr(data-before);
           font-size: 3vw;
           font-weight: 700;
           line-height: 3.1vw;
-          background: linear-gradient(180deg,#c7c7c7 0%,#ffffff 25%,#c7c7c7 100%);
+          background: linear-gradient(180deg,$gray 0%,$white 25%,$gray 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
       }
-      .bottom{
+      .bottom {
         font-size: 1vw;
         font-weight: 500;
         margin: 4.6vw 0;
         padding: 1vw 11.3vw;
         width: auto;
-        color: #fff;
-        border: 1px solid #046db1;
-        background: rgba(0,0,0,.5);
+        color: $white;
+        border: 1px solid $blue;
+        background: $black-50;
         text-align: center;
       }
     }
-    .verify_char{
+    .verify_char {
       padding: 0 0 13vw;
       min-height: auto;
       height: 77vw;
-      .title{
+      .title {
         text-align: center;
       }
-      .title::before{
+      .title::before {
         content: attr(data-before);
         font-size: 3vw;
         font-weight: 900;
-        background: linear-gradient(rgb(247, 237, 148) 0%, rgb(251, 230, 186) 45.83%, rgb(239, 130, 21) 100%);
+        background: linear-gradient($yellow 0%, $light-yellow 45.83%, $orangeRGB 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .content{
+      .content {
         text-align: center;
         flex-direction: row;
         display: flex;
         justify-content: center;
         align-items: center;
-        .box{
+        .box {
           margin: 3vw 1vw;
           padding: 2vw 2vw;
           max-width: 26vw;
           height: 85vh;
-          border: 1px solid #046db1;
-          background: rgba(0, 0, 0, 0.8);
-          .box_title{
+          border: 1px solid $blue;
+          background: $black-80;
+          .box_title {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            p{
+            p {
               font-size: 2vw;
               font-weight: 900;
-              background: linear-gradient(180deg,#c7c7c7 0%,#ffffff 25%,#c7c7c7 100%);
+              background: linear-gradient(180deg,$gray 0%,$white 25%,$gray 100%);
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
             }
-            span{
+            span {
               font-size: 1vw;
               font-weight: 900;
               margin: 1.3vw 0;
-              color: #ffc485;
+              color: $orange;
             }
           }
-          .box_seed{
+          .box_seed {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            p{
+            p {
               font-size: 0.825vw;
               font-weight: 500;
               margin: 0 2.6vw;
               padding: 1vw 0.5vw;
-              color: #49b7cd;
-              border: 1px solid #00e0ff;
-              background: rgba(0,224,255,.3);
+              color: $tiffany;
+              border: 1px solid $sky_blue;
+              background: $green-lake;
               word-break: break-all;
             }
-            span{
+            span {
               font-size: 1vw;
               font-weight: 900;
-              color: #ffc485;
+              color: $orange;
               margin: 1.3vw 0;
               padding: 0 2.6vw;
             }
           }
-          ul{
+          ul {
             display: flex;
             justify-content: space-between;
-            li{
+            li {
               display: flex;
               margin: 0 0.5vw;
               justify-content: flex-start;
               flex-direction: column;
-              p{
+              p {
                 padding-top: 0.5vw;
                 font-size: 1.5vw;
                 font-weight: 900;
                 width: 5.9vw;
                 height: 2.5vw;
                 border-radius: 5vw;
-                color: #000;
+                color: $black;
                 background: linear-gradient(180deg,#c7c7c7 0%,#ffffff 25%,#c7c7c7 100%);
               }
-              span{
+              span {
                 font-size: 1vw;
                 font-weight: 900;
                 margin: 1.3vw 0;
-                color: #ffc485;
+                color: $orange;
               }
-              .info{
+              .info {
                 width: 55px;
                 font-size: 1vw;
                 font-weight: 350;
                 margin-left: 1.2vw;
                 margin-bottom: 0.25vw;
-                color: #fff;
+                color: $white;
                 white-space: nowrap;
               }
             }
           }
         }
       }
-      .bottom{
+      .bottom {
         flex-direction: column;
         display: flex;
         justify-content: center;
@@ -381,30 +382,30 @@ export default {
         padding: 0 6.6vw;
         text-align: center;
       }
-      .bottom::before{
+      .bottom::before {
         content: attr(data-before);
         font-size:1.5vw;
         font-weight: 900;
         margin-bottom: 0.8vw;
         line-height: 1.25;
-        background: linear-gradient(rgb(247, 237, 148) 0%, rgb(251, 230, 186) 45.83%, rgb(239, 130, 21) 100%);
+        background: linear-gradient($yellow 0%, $light-yellow 45.83%, $orangeRGB 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .bottom::after{
+      .bottom::after {
         content: attr(data-before);
         font-size:1vw;
         font-weight: 900;
-        background: linear-gradient(rgb(247, 237, 148) 0%, rgb(251, 230, 186) 45.83%, rgb(239, 130, 21) 100%);
+        background: linear-gradient($yellow 0%, $light-yellow 45.83%, $orangeRGB 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .btns{
+      .btns {
         flex-direction: row;
         margin-top: 6vw;
         display: flex;
         justify-content: center;
-        .btn{
+        .btn {
           padding: 0.8vw 1vw 0.8vw 1.5vw;
           border-radius: 2.6vw;
           display: flex;
@@ -412,16 +413,16 @@ export default {
           margin: 0 3vw;
           width: 15vw;
           height: 3.5vw;
-          border: 1px solid #00e0ff;
+          border: 1px solid $sky-blue;
           border-radius: 6.6vw;
-          background: rgba(0,0,0,.5);
-          p{
+          background: $black-50;
+          p {
             font-size: 1.5vw;
             font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 0.2em #00e0ff;
+            color: $white;
+            text-shadow: 0 0 0.2em $sky-blue;
           }
-          img{
+          img {
             width: 2.5vw;
           }
         }

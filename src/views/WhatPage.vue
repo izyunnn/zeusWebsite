@@ -42,7 +42,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.what{
+@import '~@/assets/scss/color.scss';
+.what {
     background-image: url("@/assets/whatPage/what.png");
     height: 100%;
     width: 100%;
@@ -51,7 +52,7 @@ export default {
     background-attachment: fixed;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    .what_header{
+    .what_header {
       z-index: 10;
       height: 13.921875vw;
       min-height: 235px;
@@ -61,59 +62,59 @@ export default {
       align-items: center;
       flex-direction: column;
       padding-top: 100px;
-      background: rgba(0,0,0,.5);
-      p{
-        background: linear-gradient(180deg,#c7c7c7 0%,#ffffff 25%,#c7c7c7 100%);
+      background: $black-50;
+      p {
+        background: linear-gradient(180deg,$gray 0%,$white 25%,$gray 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .header{
+      .header {
         font-size: 3vw;
         margin-bottom: 0.8vw;
         font-weight: 700;
       }
-      .engHeader{
+      .engHeader {
         font-size: 1.5vw;
         font-weight: 700;
       }
     }
-    .what_blockchain{
+    .what_blockchain {
       padding: 6.7vw 14vw;
       height: 44vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-direction: column;
-      .title{
+      .title {
         text-align: center;
-        color: #ffc485;
+        color: $orange;
         font-size: 2vw;
         font-weight: 700;
         margin: 1.8vw 0 0.8vw;
       }
-      ul{
+      ul {
         width: 57vw;
         list-style: none;
-        li{
-          color: #fff;
+        li {
+          color: $white;
           font-size: 1vw;
           font-weight: 500;
           margin-bottom: 1.8vw;
           line-height: 1.3vw;
         }
       }
-      .bottom{
+      .bottom {
         font-size: 0.8vw;
         font-weight: 500;
         margin-top: 2.6vw;
         padding: 1.5vw;
         width: 57vw;
-        color: #ffc485;
-        border: 1px solid rgb(0, 244, 255);
-        background: rgba(9, 48, 81, 0.9);
+        color: $orange;
+        border: 1px solid $light-blue;
+        background: $navy-blue-90;
       }
     }
-    .what_advantage{
+    .what_advantage {
       background-image: url("@/assets/whatPage/advantage.png");
       min-height: 110vh;
       max-width: 100%;
@@ -125,31 +126,31 @@ export default {
       background-position: 50% 50%;
       padding: 8.25vw 0;
       height: 56vh;
-      .header{
+      .header {
         font-size: 3vw;
         font-weight: 900;
         margin-bottom: 3.9vw;
         width: 56.7vw;
-        color: rgb(255, 255, 255);
+        color: $white;
       }
-      ul{
+      ul {
         width: 58vw;
         list-style: none;
-        li{
+        li {
           margin-bottom: 3vw;
           width: 75%;
-          .title{
+          .title {
           font-size: 1.5vw;
           font-weight: 900;
           margin-bottom: 1vw;
-          color: #ffc485;
+          color: $orange;
           }
-          p{
+          p {
             font-size: 1vw;
             font-weight: 500;
             margin-bottom: 0.8vw;
             line-height: 1.3vw;
-            color: #fff;
+            color: $white;
           }
         }
       }

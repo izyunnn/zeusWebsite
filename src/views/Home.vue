@@ -15,7 +15,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .home{
+  .home {
     background-image: url("@/assets/homepage/content1.png");
     height: 100%;
     width: 100%;
@@ -24,13 +24,13 @@ export default {
     background-position: 50% 50%;
     background-repeat: no-repeat;
   }
-  .home_banner{
+  .home_banner {
     background-image: url("@/assets/homepage/homepage.png");
     min-height: 110vh;
     max-width: 100%;
     background-size: cover;
   }
-  .home_black{
+  .home_black {
     min-height: 100vh;
     max-width: 100%;
   }

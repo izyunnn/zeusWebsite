@@ -1,21 +1,21 @@
 <template>
   <div class="layout">
-    <NavBar />
-    <AppMain />
-    <Bottom />
+    <navBar />
+    <appMain />
+    <bottom />
   </div>
 </template>
 
 <script>
-import AppMain from './component/AppMain.vue'
-import NavBar from './component/NavBar.vue'
-import Bottom from './component/Bottom.vue'
+import appMain from './component/AppMain.vue'
+import navBar from './component/NavBar.vue'
+import bottom from './component/Bottom.vue'
 export default {
   name: 'LayOut',
   components: {
-    AppMain,
-    NavBar,
-    Bottom
+    appMain,
+    navBar,
+    bottom
   },
   setup () {}
 }

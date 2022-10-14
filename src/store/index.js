@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-
+import { tableList } from './tableList.js'
 export default createStore({
   state: {
   },
@@ -9,6 +9,5 @@ export default createStore({
   },
   actions: {
   },
-  modules: {
-  }
+  modules: { tableList }
 })
