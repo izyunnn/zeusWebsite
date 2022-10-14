@@ -1,0 +1,17 @@
+{
+  "tabList": {
+    "home": "Home",
+    "about": "About"
+  },
+  "lang": "Translate",
+  "langList": {
+    "zh-CN": "中文",
+    "en-US": "English",
+    "ru-RU": "Русский",
+    "ja-JP": "日本語",
+    "ko-KR": "한국어",
+    "vi-VN": "Tiếng Việt",
+    "th-TH": "ไทย"
+  }
+}
+

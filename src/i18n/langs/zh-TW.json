@@ -1,0 +1,17 @@
+{
+  "tabList": {
+    "home": "首頁",
+    "about": "關於"
+  },
+  "lang": "选择语系",
+  "langList": {
+    "zh-CN": "中文",
+    "en-US": "English",
+    "ru-RU": "Русский",
+    "ja-JP": "日本語",
+    "ko-KR": "한국어",
+    "vi-VN": "Tiếng Việt",
+    "th-TH": "ไทย"
+  }
+}
+

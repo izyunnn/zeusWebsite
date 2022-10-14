@@ -1,0 +1,134 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	// @include text();
+	color: #747474;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	position: relative;
+	margin: 0;
+    padding: 0;
+	width: 100%;
+	height: 100%;
+    // overflow: hidden;
+	line-height: 1;
+	box-sizing: border-box;
+	overflow-y: overlay;
+	background: black;
+}
+ol, ul, li {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// NOTE icon font use
+.material-icons.md-14 { font-size: 14px; }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-32 { font-size: 32px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-60 { font-size: 60px; }
+.material-icons.md-72 { font-size: 72px; }
+
+a{
+	text-decoration: none;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-10, .col-12 {
+  display: flex;
+  align-items: center;
+//   flex: 1 1 100%;
+}
+// @include ipad-width {
+  .col-1 {
+	flex: 1 1 8.3%;
+  }
+  .col-2 {
+    flex: 1 1 16.6%;
+  }
+  .col-3 {
+    flex: 1 1 25%;
+  }
+  .col-4 {
+    flex: 1 1 33.3%;
+  }
+  .col-5 {
+    flex: 1 1 41.6%;
+  }
+  .col-6 {
+    flex: 1 1 50%;
+  }
+  .col-7 {
+    flex: 1 1 58.3%
+  }
+  .col-8 {
+    flex: 1 1 66.6%
+  }
+  .col-10 {
+    flex: 1 1 83.3%;
+  }
+// }
+
+.container {
+  display: flex;
+  align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+	// width: 100%;
+	width: 1280px;
+	height: 100%;
+	// padding-right: 15px;
+	// padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	// @include ipad-width {
+	// 	flex-direction: row;
+	// 	max-width: 720px;
+	// }
+	// @include desktops-width {
+	// 	max-width: 960px;
+	// }
+	// @include large-desktops-width {
+	// 	max-width: 1280px;
+	// }
+}
