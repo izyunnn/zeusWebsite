@@ -30,6 +30,13 @@ export default {
     max-width: 100%;
     background-size: cover;
   }
+  .home_game{
+    padding: 6.2vw 0;
+    height: 65vw;
+    background-image: url("@/assets/homepage/content2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .home_black {
     min-height: 100vh;
     max-width: 100%;
