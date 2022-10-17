@@ -1,7 +1,7 @@
 <template>
-<div class="modal">
+<div class="modal" v-if="modal">
     <div class="gameDetail">
-        <img src="@/assets/modal/cancel.png"/>
+        <img src="@/assets/modal/cancel.png" @click="modal = !modal"/>
         <div class="gameDetail_content">
             <img src="@/assets/games/baccarat.png"/>
             <div class="info">
@@ -28,7 +28,7 @@
         <div class="title">百家樂2.0</div>
         <div class="content">百家樂源於義大利，是撲克遊戲常見之一，亦是受歡迎的遊戲之一。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -41,7 +41,7 @@
         <div class="title">龍虎</div>
         <div class="content">是由百家樂所衍生出來的一款紙牌遊戲，不同於百家樂之處，即為僅需派出一張牌比大小就可以定輸贏。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -54,7 +54,7 @@
         <div class="title">色碟</div>
         <div class="content">色碟始於1909，是越南流行已久的傳統遊戲，是一件很經典，玩法很簡單的遊戲。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -67,7 +67,7 @@
         <div class="title">魚蝦蟹</div>
         <div class="content">魚蝦蟹，又稱魚蝦蟹骰寶，越南稱為匏蟹魚虎，是中國和越南傳統遊戲。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -80,7 +80,7 @@
         <div class="title">Teen Patti</div>
         <div class="content">是一種賭博 紙牌遊戲，起源於印度次大陸 ，它起源於三張牌的英語遊戲，受到撲克的影響。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -93,7 +93,7 @@
         <div class="title">Andar Bahar</div>
         <div class="content">Andar Bahar僅使用一副撲克牌五十二（52）張牌進行遊戲，不含王牌或百搭牌。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -106,7 +106,7 @@
         <div class="title">BTC QuickWin</div>
         <div class="content">宙斯獨家研發產品，結合全球最火熱的數字貨幣和下注模式。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -119,7 +119,7 @@
         <div class="title">PK10</div>
         <div class="content">北京賽車别名又稱為PK10，是根據北京福利彩票官方開獎結果所精心設計的遊戲，目前這款遊戲是大陸最熱門的快開彩。</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -132,7 +132,7 @@
         <div class="title">番攤</div>
         <div class="content">「番攤」是款非常特別的遊戲是專屬於台灣、中國等少數亞洲國家才會知道的遊戲</div>
         <div class="btns">
-            <img src="@/assets/games/search.png"/>
+            <img src="@/assets/games/search.png" @click="modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -161,8 +161,9 @@ export default {
   },
   components: {},
   setup () {
+    const modal = ref(false)
     const isShow = ref(false)
-    return { isShow }
+    return { isShow, modal }
   }
 }
 </script>
