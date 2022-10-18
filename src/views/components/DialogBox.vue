@@ -1,38 +1,27 @@
 <template>
-  <div class="modal" v-if="modal">
+<div class="modal" v-if="modal">
     <div class="gameDetail">
         <img src="@/assets/modal/cancel.png" @click="modal = !modal"/>
         <div class="gameDetail_content">
-            <img src="@/assets/games/baccarat.png"/>
+            <img :src="require(`@/assets/games/${name}.png`)" alt=“icon”/>
             <div class="info">
-                <p>{{ title }}</p>
-                <span>{{ introduce }}</span>
-                <span>{{ content }}</span>
+                <p class="title">{{ Title }}</p>
+                <span>{{ Content }}</span>
+                <span>{{ Intro }}</span>
                 <div class="btn">
                     <img src="@/assets/anchor.png"/>
-                    <p>PLAY</p>
+                    <p class="play">PLAY</p>
                     <img src="@/assets/anchor.png"/>
                 </div>
             </div>
         </div>
     </div>
-  </div>
+</div>
 </template>
 <script>
 import { ref } from 'vue'
 export default {
   name: 'DialogBox',
-  props: {
-    title: {
-      type: String
-    },
-    introduce: {
-      type: String
-    },
-    content: {
-      type: String
-    }
-  },
   components: {},
   setup () {
     const modal = ref(false)
@@ -89,9 +78,10 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: flex-end;
+                flex-direction: column;
                 padding: 35px 0 0 50px;
                 height: 300px;
-                p {
+                .title {
                     font-size: 20px;
                     font-weight: 700;
                     margin-bottom: 20px;
@@ -125,7 +115,7 @@ export default {
                         height: 25px;
                         width: 25px;
                     }
-                    p {
+                    .play {
                         text-align: center;
                         margin-bottom: 0;
                         width: auto;

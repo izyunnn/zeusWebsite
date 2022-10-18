@@ -2,14 +2,19 @@
 <div class="bottom">
   <a href="https://access.gaminglabs.com/Certificate/Index?i=385" target="blank"><img src="@/assets/bottomlogo.gif"/></a>
   <p>All contents © copyright 2020 zeus Worldwide . All rights reserved.</p>
-  <div class="bottom_anchor"><img src="@/assets/anchor.png"></div>
+  <div class="bottom_anchor" @click="goTop()"><img src="@/assets/anchor.png"></div>
 </div>
 </template>
 <script>
 export default {
-  name: 'FooterView',
+  name: 'bottomView',
   components: {},
-  setup () {}
+  setup () {
+    function goTop () {
+      document.documentElement.scrollTop = 0
+    }
+    return { goTop }
+  }
 }
 </script>
 <style lang="scss" scoped>
