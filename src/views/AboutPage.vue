@@ -1,30 +1,30 @@
 <template>
   <div class="about">
     <div class="about_header">
-      <p class="header">關於宙斯區塊鏈遊戲</p>
+      <p class="header">{{ $t('tabList.about') }}</p>
       <p class="engHeader">About zeus</p>
     </div>
     <div class="about_feature">
-      <div class="header">Zeus區塊鏈遊戲特色</div>
-      <div class="title">360度無死角絕對公平公正且無法篡改</div>
+      <div class="header">{{ $t('aboutPage.about_feature_header') }}</div>
+      <div class="title">{{ $t('aboutPage.about_feature_title') }}</div>
       <ul>
-        <li>秉承區塊鏈特性無法被篡改，且每一局都是即時進行，每張牌每個動作紀錄都是公開可以被查詢的，完全無法做任何作弊行為，玩家能絕對放心遊戲。</li>
-        <li>此外宙斯區塊鏈每款遊戲也都送至國際博奕研究室（Gaming Laboratories International），簡稱GLI認證，完全符合博彩相關法律和技術規格要求。</li>
-        <li>GLI 本身擁有美國和國際認證，符合ISO / IEC 17025，17020和17065標準，具有測試與驗證遊戲、賭博和彩票行業的技術能力。GLI 同時為全球近400個博彩監管機構所指定的官方測試實驗室，提供絕對公正的測試與認證，也是目前國際博奕市場中，最具公信力的規範之一。</li>
+        <li>{{ $t('aboutPage.about_feature_content1') }}</li>
+        <li>{{ $t('aboutPage.about_feature_content2') }}</li>
+        <li>{{ $t('aboutPage.about_feature_content3') }}</li>
       </ul>
     </div>
     <div class="about_customer">
-      <div class="title">遊戲品項獨特 以東南亞及印度熱門遊戲為主</div>
+      <div class="title">{{ $t('aboutPage.about_customer_title') }}</div>
       <ul>
-        <li>中國市場：百家樂、北京賽車</li>
-        <li>印度市場：Teenpatti、Rummy、Andar Bahar</li>
-        <li>東南亞市場：色碟、番攤、魚蝦蟹、三張牌、四張牌</li>
+        <li>{{ $t('aboutPage.about_customer_content1') }}</li>
+        <li>{{ $t('aboutPage.about_customer_content2') }}</li>
+        <li>{{ $t('aboutPage.about_customer_content3') }}</li>
       </ul>
     </div>
     <div class="about_gameStyle">
       <img class="title" src="@/assets/aboutPage/word.png" alt="title" />
       <div class="content">
-        <p>跳脫傳統遊戲畫面獨樹一格的遊戲畫風</p>
+        <p>{{ $t('aboutPage.about_gameStyle_content') }}</p>
       </div>
       <img src="@/assets/aboutPage/about_gamestyle.png">
     </div>

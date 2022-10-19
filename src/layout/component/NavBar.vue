@@ -22,25 +22,22 @@
   <div class="right">
     <a href="/#home" class="home_link"><img class="logo" src="@/assets/logo.png" @click="linkSelect(-1)"/></a>
       <ul>
-        <li v-for="(item, index) in tableList" :key="index" @click="linkSelect(index)" :class="{ actived:index == isActive }"><a :href="item.title">{{ item.name }}</a></li>
+        <li v-for="(item, index) in tableList" :key="item" @click="linkSelect(index)" :class="{ actived:index == isActive }"><a :href="item.title">{{ item.name }}</a></li>
       </ul>
   </div>
   <div class="left">
     <div class="login" @click="modal = !modal">
       <img src="@/assets/login.png"/>
-      <p>登入</p>
+      <p>{{ $t('login') }}</p>
     </div>
     <div class="langSelector">
       <div class="btn" @click="isShow = !isShow">
         <img src="@/assets/lang.png">
-        <p>繁體中文</p>
+        <p>{{lang}}</p>
       </div>
       <div class="list_on" v-if="isShow">
         <ul>
-          <li>English</li>
-          <li>简体中文</li>
-          <li>繁體中文</li>
-          <li>日本語</li>
+          <li v-for="item in langMenu" :key="item.id" @click="$i18n.locale = item.id">{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -48,21 +45,38 @@
 </div>
 </template>
 <script>
-import { useStore } from 'vuex'
-import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { ref, reactive, watch } from 'vue'
 export default ({
   name: 'NavBar',
   component: {},
   setup () {
+    const { t, locale } = useI18n({ useScope: 'global' })
     const isActive = ref(0)
-    const store = useStore()
     const isShow = ref(false)
     const modal = ref(false)
-    const tableList = computed(() => store.state.tableList.tablelist)
+    const lang = '繁體中文'
+    const tableList = reactive([
+      { title: '/#what', name: t('tabList.what') },
+      { title: '/#about', name: t('tabList.about') },
+      { title: '/#verify', name: t('tabList.verify') }
+    ])
+    const langMenu = ref([
+      { name: '繁體中文', id: 'zn-TW' },
+      { name: 'English', id: 'en-US' },
+      { name: '簡體中文', id: 'zn-CN' },
+      { name: '日本語', id: 'ja-JP' }
+    ])
     const linkSelect = (index) => {
       isActive.value = index
     }
-    return { tableList, linkSelect, isActive, isShow, modal }
+    watch(locale, (newLocale) => {
+      localStorage.setItem('locale', newLocale)
+    })
+    const setModal = (data) => {
+      this.lang = data.name
+    }
+    return { tableList, linkSelect, isActive, isShow, modal, langMenu, locale, lang, setModal }
   }
 })
 </script>
@@ -173,16 +187,16 @@ export default ({
   }
 }
 .navbar {
-  position: absolute;
   display: flex;
+  position: absolute;
   justify-content: space-between;
   align-items: center;
   padding: 0 5.15625vw;
   width: 100%;
   height: 100px;
-  z-index: 10;
   background-color: $black-70;
   box-shadow: 0 5px 5px $box_shadow;
+  z-index: 10;
   .right {
     display: flex;
     justify-content: flex-start;
@@ -197,6 +211,8 @@ export default ({
     }
     ul {
       display: flex;
+      justify-content: normal;
+      align-items: normal;
       white-space:nowrap;
       li {
         position: relative;
@@ -233,15 +249,15 @@ export default ({
     display: flex;
     align-items: center;
     text-align: center;
-    margin-left: 42.5em;
+    margin-left: 35.5vw;
     .login {
       display: flex;
       align-items: center;
       text-align: center;
       padding: 15px;
       margin-right: 30px;
-      width: 100px;
-      height: 40px;
+      width: 8vw;
+      height: 2vw;
       border: 1px solid $orange;
       background: $black;
       cursor: pointer;
@@ -253,7 +269,6 @@ export default ({
         margin-left: 10px;
         color: $orange;
         font-weight: 500;
-        white-space:nowrap;
       }
     }
     .langSelector {
@@ -283,7 +298,7 @@ export default ({
         width: 132px;
         height: 176px;
         z-index: 5;
-        transition: margin-top 0.5s;
+        transition: height 0.5s;
         overflow: hidden;
         ul {
           display: flex;
@@ -293,7 +308,7 @@ export default ({
           height: 100%;
           border: 1px solid $orange;
           background: $black;
-          transition: margin-top .5s;
+          transition: margin-top 0.5;
           li {
             padding: 10px 0;
             width: 100%;
@@ -308,6 +323,13 @@ export default ({
           }
         }
       }
+    }
+  }
+}
+@media (max-width: 1400px) {
+  .navbar{
+    .left{
+      margin-left: 15vw;
     }
   }
 }
