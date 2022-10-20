@@ -5,13 +5,9 @@
     "verify": "Blockchain verification method"
   },
   "login": "Login",
-  "lang": "選擇語系",
-  "langList": {
-    "zh-CN": "简体中文",
-    "zh-TW": "繁體中文",
-    "en-US": "English",
-    "ja-JP": "日本語"
-  },
+  "account": "account",
+  "password": "password",
+  "lang": "English",
   "gameList": {
     "baccarat_title": "Baccarat22.0",
     "baccarat_content": "Baccarat originated in Italy. It is one of the most common and popular poker games.",

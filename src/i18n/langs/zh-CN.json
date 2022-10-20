@@ -5,13 +5,9 @@
     "verify": "区块链验证方式"
   },
   "login": "登录",
-  "lang": "选择语系",
-  "langList": {
-    "zh-CN": "简体中文",
-    "zh-TW": "繁體中文",
-    "en-US": "English",
-    "ja-JP": "日本語"
-  },
+  "lang": "简体中文",
+  "account": "帐号",
+  "password": "密码",
   "gameList": {
     "baccarat_title": "百家乐2.0",
     "baccarat_content": "百家乐源于义大利，是扑克游戏常见之一，亦是受欢迎的游戏之一。",

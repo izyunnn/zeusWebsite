@@ -5,13 +5,9 @@
     "verify": "區塊鏈驗證方式"
   },
   "login": "登入",
-  "lang": "選擇語系",
-  "langList": {
-    "zh-CN": "简体中文",
-    "zh-TW": "繁體中文",
-    "en-US": "English",
-    "ja-JP": "日本語"
-  },
+  "lang": "繁體中文",
+  "account": "帳號",
+  "password": "密碼",
   "gameList": {
     "baccarat_title": "百家樂2.0",
     "baccarat_content": "百家樂源於義大利，是撲克遊戲常見之一，亦是受歡迎的遊戲之一。",

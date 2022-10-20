@@ -5,13 +5,9 @@
     "verify": "ブロックチェーンの検証方法"
   },
   "login": "ログイン",
-  "lang": "選擇語系",
-  "langList": {
-    "zh-CN": "简体中文",
-    "zh-TW": "繁體中文",
-    "en-US": "English",
-    "ja-JP": "日本語"
-  },
+  "lang": "日本語",
+  "account": "アカウント",
+  "password": "パスワード",
   "gameList": {
     "baccarat_title": "バカラ2.0",
     "baccarat_content": "バカラはイタリアで生まれました。最も一般的で人気のあるポーカーゲームの一つです。",

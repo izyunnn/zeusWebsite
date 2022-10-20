@@ -30,7 +30,7 @@
       <div class="bottom">{{ $t('verifyPage.verify_step_bottom') }}</div>
     </div>
     <div class="verify_char">
-      <div class="title" data-before="字符"></div>
+      <div class="title" :data-before="$t('verifyPage.verify_char_title')" ></div>
       <div class="content">
         <div class="box">
           <div class="box_title">
@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>
-      <div class="bottom" data-before="真公平不懼任何質疑，我們支持任何第三方SHA 256工具檢驗" data-after="您可以將種子復製到以下或其他網站進行摘要正確性驗證"></div>
+      <div class="bottom" :data-before="$t('verifyPage.verify_char_bottom_title')" :data-after="$t('verifyPage.verify_char_bottom_content')" ></div>
       <div class="btns">
         <a href="https://www.functions-online.com/hash.html" target="_blank" class="btn">
           <p>{{ $t('verifyPage.verify_char_btn1') }}</p>
@@ -189,6 +189,7 @@ export default {
       color: $orange;
       font-size: 3vw;
       font-weight: 700;
+      white-space: nowrap;
     }
     li:nth-child(1) {
       margin-left: 28vw;

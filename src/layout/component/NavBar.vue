@@ -5,10 +5,10 @@
         <div class="login_content">
             <img class="logo" src="@/assets/logo.png" alt=“LOGO”/>
             <div class="input-text">
-              <input id="account" type="text" placeholder="帳號" autocomplete="off">
+              <input id="account" type="text" :placeholder="$t('account')" autocomplete="off">
             </div>
             <div class="input-text">
-              <input id="password" type="password" placeholder="密碼" autocomplete="off">
+              <input id="password" type="password" :placeholder="$t('password')" autocomplete="off">
             </div>
             <div class="btn">
               <img src="@/assets/anchor.png"/>
@@ -20,7 +20,7 @@
 </div>
 <div class="navbar">
   <div class="right">
-    <a href="/#home" class="home_link"><img class="logo" src="@/assets/logo.png" @click="linkSelect(-1)"/></a>
+    <a href="/#home" class="home_link"><img class="logo" src="@/assets/logo.png" @click="linkSelect(10)"/></a>
       <ul>
         <li v-for="(item, index) in tableList" :key="item" @click="linkSelect(index)" :class="{ actived:index == isActive }"><a :href="item.title">{{ item.name }}</a></li>
       </ul>
@@ -33,9 +33,9 @@
     <div class="langSelector">
       <div class="btn" @click="isShow = !isShow">
         <img src="@/assets/lang.png">
-        <p>{{lang}}</p>
+        <p>{{ $t('lang') }}</p>
       </div>
-      <div class="list_on" v-if="isShow">
+      <div class="list" :class="{on: isShow == true}">
         <ul>
           <li v-for="item in langMenu" :key="item.id" @click="$i18n.locale = item.id">{{item.name}}</li>
         </ul>
@@ -46,37 +46,34 @@
 </template>
 <script>
 import { useI18n } from 'vue-i18n'
-import { ref, reactive, watch } from 'vue'
+import { reactive, ref } from 'vue'
 export default ({
   name: 'NavBar',
   component: {},
+  computed: {
+    tableList () {
+      return [
+        { title: '/#what', name: this.$t('tabList.what') },
+        { title: '/#about', name: this.$t('tabList.about') },
+        { title: '/#verify', name: this.$t('tabList.verify') }
+      ]
+    }
+  },
   setup () {
-    const { t, locale } = useI18n({ useScope: 'global' })
+    const { locale } = useI18n({ useScope: 'global' })
     const isActive = ref(0)
     const isShow = ref(false)
     const modal = ref(false)
-    const lang = '繁體中文'
-    const tableList = reactive([
-      { title: '/#what', name: t('tabList.what') },
-      { title: '/#about', name: t('tabList.about') },
-      { title: '/#verify', name: t('tabList.verify') }
-    ])
-    const langMenu = ref([
-      { name: '繁體中文', id: 'zn-TW' },
+    const langMenu = reactive([
+      { name: '繁體中文', id: 'zh-TW' },
       { name: 'English', id: 'en-US' },
-      { name: '簡體中文', id: 'zn-CN' },
+      { name: '簡體中文', id: 'zh-CN' },
       { name: '日本語', id: 'ja-JP' }
     ])
     const linkSelect = (index) => {
       isActive.value = index
     }
-    watch(locale, (newLocale) => {
-      localStorage.setItem('locale', newLocale)
-    })
-    const setModal = (data) => {
-      this.lang = data.name
-    }
-    return { tableList, linkSelect, isActive, isShow, modal, langMenu, locale, lang, setModal }
+    return { linkSelect, isActive, isShow, modal, langMenu, locale }
   }
 })
 </script>
@@ -191,11 +188,12 @@ export default ({
   position: absolute;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5.15625vw;
+  padding: 0 5vw;
   width: 100%;
   height: 100px;
   background-color: $black-70;
   box-shadow: 0 5px 5px $box_shadow;
+  box-sizing: border-box;
   z-index: 10;
   .right {
     display: flex;
@@ -213,10 +211,14 @@ export default ({
       display: flex;
       justify-content: normal;
       align-items: normal;
-      white-space:nowrap;
+      white-space: nowrap;
+      width: 40vw;
       li {
+        display: inline;
+        justify-content: normal;
+        align-items: normal;
         position: relative;
-        margin:0 30px;
+        margin:0 25px;
         a {
           color: $white;
         }
@@ -249,21 +251,22 @@ export default ({
     display: flex;
     align-items: center;
     text-align: center;
-    margin-left: 35.5vw;
+    margin-left: 20vw;
+    box-sizing: border-box;
     .login {
       display: flex;
       align-items: center;
       text-align: center;
       padding: 15px;
       margin-right: 30px;
-      width: 8vw;
+      width: 7vw;
       height: 2vw;
       border: 1px solid $orange;
       background: $black;
       cursor: pointer;
       img {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
       }
       p {
         margin-left: 10px;
@@ -291,14 +294,14 @@ export default ({
           color: $orange;
         }
       }
-      .list_on {
+      .list {
         position: absolute;
         margin-left: 5px;
         top: 50px;
         width: 132px;
-        height: 176px;
+        height: 0;
         z-index: 5;
-        transition: height 0.5s;
+        transition: height 0.5s ease 0s;
         overflow: hidden;
         ul {
           display: flex;
@@ -323,13 +326,16 @@ export default ({
           }
         }
       }
+      .on {
+        height: 176px;
+      }
     }
   }
 }
 @media (max-width: 1400px) {
-  .navbar{
-    .left{
-      margin-left: 15vw;
+  .navbar {
+    .left {
+      margin-left: 7.5vw;
     }
   }
 }
