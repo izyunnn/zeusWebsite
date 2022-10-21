@@ -20,9 +20,9 @@
 </div>
 <div class="navbar">
   <div class="right">
-    <a href="/#home" class="home_link"><img class="logo" src="@/assets/logo.png" @click="linkSelect(10)"/></a>
+    <router-link :to="'/home'" class="home_link"><img class="logo" src="@/assets/logo.png"/></router-link>
       <ul>
-        <li v-for="(item, index) in tableList" :key="item" @click="linkSelect(index)" :class="{ actived:index == isActive }"><a :href="item.title">{{ item.name }}</a></li>
+        <li v-for="item in tableList" :key="item" @click.stop="linkSelect(item)"><router-link class="router-link" :to="item.title">{{ item.name }}</router-link></li>
       </ul>
   </div>
   <div class="left">
@@ -30,14 +30,14 @@
       <img src="@/assets/login.png"/>
       <p>{{ $t('login') }}</p>
     </div>
-    <div class="langSelector">
-      <div class="btn" @click="isShow = !isShow">
+    <div class="langSelector" ref="langSelect">
+      <div class="btn" ref="main" @click="isShow = !isShow" @click.stop>
         <img src="@/assets/lang.png">
         <p>{{ $t('lang') }}</p>
       </div>
       <div class="list" :class="{on: isShow == true}">
         <ul>
-          <li v-for="item in langMenu" :key="item.id" @click="$i18n.locale = item.id">{{item.name}}</li>
+          <li v-for="item in langMenu" :key="item.id" @click="$i18n.locale = item.id,isShow = !isShow" @click.stop>{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -46,22 +46,26 @@
 </template>
 <script>
 import { useI18n } from 'vue-i18n'
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 export default ({
   name: 'NavBar',
   component: {},
   computed: {
     tableList () {
       return [
-        { title: '/#what', name: this.$t('tabList.what') },
-        { title: '/#about', name: this.$t('tabList.about') },
-        { title: '/#verify', name: this.$t('tabList.verify') }
+        { id: '1', title: '/what', name: this.$t('tabList.what') },
+        { id: '2', title: '/about', name: this.$t('tabList.about') },
+        { id: '3', title: '/verify', name: this.$t('tabList.verify') }
       ]
     }
   },
+  mounted () {
+    document.addEventListener('click', (e) => {
+      if (!this.$refs.langSelect.contains(e.target)) this.isShow = false
+    })
+  },
   setup () {
-    const { locale } = useI18n({ useScope: 'global' })
-    const isActive = ref(0)
+    const { locale, t } = useI18n({ useScope: 'global' })
     const isShow = ref(false)
     const modal = ref(false)
     const langMenu = reactive([
@@ -70,10 +74,11 @@ export default ({
       { name: '簡體中文', id: 'zh-CN' },
       { name: '日本語', id: 'ja-JP' }
     ])
-    const linkSelect = (index) => {
-      isActive.value = index
-    }
-    return { linkSelect, isActive, isShow, modal, langMenu, locale }
+    // reload page時不會變回預設
+    watch(locale, (newlocale) => {
+      localStorage.setItem('locale', newlocale)
+    })
+    return { isShow, modal, langMenu, locale, t }
   }
 })
 </script>
@@ -221,17 +226,23 @@ export default ({
         margin:0 25px;
         a {
           color: $white;
+          &.router-link-exact-active:after  {
+            color: $sky_blue;
+          }
+          &.router-link-exact-active:before  {
+            border-bottom: 2px solid $orange;
+          }
         }
       }
     }
-    li::before {
+    .router-link::before {
       content: "";
       position: absolute;
       width: 30px;
       bottom: -8px;
       border-bottom: 2px solid $white;
     }
-    li::after {
+    .router-link::after {
       content:"★";
       position: absolute;
       top: -12px;
@@ -239,12 +250,6 @@ export default ({
       font-size: 12px;
       font-weight: 400;
       color: $white;
-    }
-    .actived::after {
-      color: $sky_blue;
-    }
-    .actived::before {
-      border-bottom: 2px solid $orange;
     }
   }
   .left {
@@ -259,7 +264,7 @@ export default ({
       text-align: center;
       padding: 15px;
       margin-right: 30px;
-      width: 7vw;
+      width: 7.5vw;
       height: 2vw;
       border: 1px solid $orange;
       background: $black;
@@ -269,9 +274,10 @@ export default ({
         height: 18px;
       }
       p {
-        margin-left: 10px;
+        margin-left: 0.5vw;
         color: $orange;
         font-weight: 500;
+        white-space: nowrap;
       }
     }
     .langSelector {
@@ -329,13 +335,6 @@ export default ({
       .on {
         height: 176px;
       }
-    }
-  }
-}
-@media (max-width: 1400px) {
-  .navbar {
-    .left {
-      margin-left: 7.5vw;
     }
   }
 }

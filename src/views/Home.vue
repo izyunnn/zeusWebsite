@@ -15,30 +15,30 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .home {
-    background-image: url("@/assets/homepage/content1.png");
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-  }
-  .home_banner {
-    background-image: url("@/assets/homepage/homepage.png");
-    min-height: 110vh;
-    max-width: 100%;
-    background-size: cover;
-  }
-  .home_game{
-    padding: 6.2vw 0;
-    height: 65vw;
-    background-image: url("@/assets/homepage/content2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .home_black {
-    min-height: 100vh;
-    max-width: 100%;
-  }
+.home {
+  width: 100%;
+  height: 100%;
+  background-image: url("@/assets/homepage/content1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-attachment: fixed;
+}
+.home_banner {
+  max-width: 100%;
+  min-height: 110vh;
+  background-image: url("@/assets/homepage/homepage.png");
+  background-size: cover;
+}
+.home_game{
+  padding: 6.2vw 0;
+  height: 65vw;
+  background-image: url("@/assets/homepage/content2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.home_black {
+  max-width: 100%;
+  min-height: 100vh;
+}
 </style>

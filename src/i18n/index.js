@@ -7,6 +7,7 @@ import ja from '@/i18n/langs/ja-JP.json'
 
 const i18n = createI18n({
   legacy: false,
+  // reload page時不會變回預設
   locale: localStorage.getItem('locale') ?? 'zh-TW',
   fallbackLocale: 'zh-TW',
   messages: {
