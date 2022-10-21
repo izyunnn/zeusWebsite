@@ -20,9 +20,9 @@
 </div>
 <div class="navbar">
   <div class="right">
-    <router-link :to="'/home'" class="home_link"><img class="logo" src="@/assets/logo.png"/></router-link>
+    <router-link to="/" class="home_link"><img class="logo" src="@/assets/logo.png"/></router-link>
       <ul>
-        <li v-for="item in tableList" :key="item" @click.stop="linkSelect(item)"><router-link class="router-link" :to="item.title">{{ item.name }}</router-link></li>
+        <li v-for="item in tableList" :key="item"><router-link class="router-link" :to="item">{{ $t(`tabList.${item}`) }}</router-link></li>
       </ul>
   </div>
   <div class="left">
@@ -50,15 +50,6 @@ import { reactive, ref, watch } from 'vue'
 export default ({
   name: 'NavBar',
   component: {},
-  computed: {
-    tableList () {
-      return [
-        { id: '1', title: '/what', name: this.$t('tabList.what') },
-        { id: '2', title: '/about', name: this.$t('tabList.about') },
-        { id: '3', title: '/verify', name: this.$t('tabList.verify') }
-      ]
-    }
-  },
   mounted () {
     document.addEventListener('click', (e) => {
       if (!this.$refs.langSelect.contains(e.target)) this.isShow = false
@@ -68,6 +59,7 @@ export default ({
     const { locale, t } = useI18n({ useScope: 'global' })
     const isShow = ref(false)
     const modal = ref(false)
+    const tableList = reactive(['what', 'about', 'verify'])
     const langMenu = reactive([
       { name: '繁體中文', id: 'zh-TW' },
       { name: 'English', id: 'en-US' },
@@ -78,7 +70,7 @@ export default ({
     watch(locale, (newlocale) => {
       localStorage.setItem('locale', newlocale)
     })
-    return { isShow, modal, langMenu, locale, t }
+    return { isShow, modal, langMenu, locale, t, tableList }
   }
 })
 </script>

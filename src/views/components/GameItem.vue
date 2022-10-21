@@ -5,9 +5,9 @@
         <div class="gameDetail_content">
             <img :src="require(`@/assets/games/${name}.png`)" alt=“icon”/>
             <div class="info">
-                <p class="title">{{ Title }}</p>
-                <span>{{ Content }}</span>
-                <span>{{ Intro }}</span>
+                <p class="title">{{ $t(`gameList.${name}_title`) }}</p>
+                <span>{{ $t(`gameList.${name}_content`) }}</span>
+                <span>{{ $t(`gameList.${name}_intro`) }}</span>
                 <div class="btn">
                     <img src="@/assets/anchor.png"/>
                     <p class="play">PLAY</p>
@@ -22,26 +22,26 @@
   <ul>
     <li v-for="item in imgs.slice(0, 6)" :key="item">
       <div class="col-6">
-        <img :src="require(`@/assets/games/${item.name}.png`)" alt=“icon”/>
+        <img :src="require(`@/assets/games/${item}.png`)" alt=“icon”/>
       </div>
       <div class="col-6">
-        <div class="title">{{ item.title }}</div>
-        <div class="content">{{ item.content }}</div>
+        <div class="title">{{ $t(`gameList.${item}_title`) }}</div>
+        <div class="content">{{ $t(`gameList.${item}_content`) }}</div>
         <div class="btns">
-            <img src="@/assets/games/search.png" @click="setModal(item);modal = !modal"/>
+            <img src="@/assets/games/search.png" @click="setModal(item),modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
     </li>
     <li v-for="item in imgs.slice(6,9)" :key="item" v-show="loadMore">
       <div class="col-6">
-        <img :src="require(`@/assets/games/${item.name}.png`)" alt=“icon”/>
+        <img :src="require(`@/assets/games/${item}.png`)" alt=“icon”/>
       </div>
       <div class="col-6">
-        <div class="title">{{ item.title }}</div>
-        <div class="content">{{ item.content }}</div>
+        <div class="title">{{ $t(`gameList.${item}_title`) }}</div>
+        <div class="content">{{ $t(`gameList.${item}_content`) }}</div>
         <div class="btns">
-            <img src="@/assets/games/search.png" @click="setModal(item);modal = !modal"/>
+            <img src="@/assets/games/search.png" @click="setModal(item),modal = !modal"/>
             <img src="@/assets/games/searchGame.png"/>
         </div>
       </div>
@@ -54,80 +54,19 @@
 </div>
 </template>
 <script>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 export default {
   name: 'GameItem',
   components: {},
-  computed: {
-    imgs () {
-      return [
-        {
-          name: 'baccarat',
-          title: this.$t('gameList.baccarat_title'),
-          content: this.$t('gameList.baccarat_content'),
-          intro: this.$t('gameList.baccarat_intro')
-        },
-        {
-          name: 'dragon_tiger',
-          title: this.$t('gameList.dragon_tiger_title'),
-          content: this.$t('gameList.dragon_tiger_content'),
-          intro: this.$t('gameList.dragon_tiger_intro')
-        },
-        {
-          name: 'Xoc_Dia',
-          title: this.$t('gameList.xoc_dia_title'),
-          content: this.$t('gameList.xoc_dia_content'),
-          intro: this.$t('gameList.xoc_dia_intro')
-        },
-        {
-          name: 'Hoo_Hey_Now',
-          title: this.$t('gameList.hoo_hey_now_title'),
-          content: this.$t('gameList.hoo_hey_now_content'),
-          intro: this.$t('gameList.hoo_hey_now_intro')
-        },
-        {
-          name: 'Teen_Patti',
-          title: this.$t('gameList.teen_patti_title'),
-          content: this.$t('gameList.teen_patti_content'),
-          intro: this.$t('gameList.teen_patti_intro')
-        },
-        {
-          name: 'Ander_Bahar',
-          title: this.$t('gameList.andar_bahar_title'),
-          content: this.$t('gameList.andar_bahar_content'),
-          intro: this.$t('gameList.andar_bahar_intro')
-        },
-        {
-          name: 'btc',
-          title: this.$t('gameList.btc_quickWin_title'),
-          content: this.$t('gameList.btc_quickWin_content'),
-          intro: this.$t('gameList.btc_quickWin_intro')
-        },
-        {
-          name: 'Pk10',
-          title: this.$t('gameList.PK10_title'),
-          content: this.$t('gameList.PK10_content'),
-          intro: this.$t('gameList.PK10_intro')
-        },
-        {
-          name: 'Fan_Tan',
-          title: this.$t('gameList.fan_tan_title'),
-          content: this.$t('gameList.fan_tan_content'),
-          intro: this.$t('gameList.fan_tan_intro')
-        }
-      ]
-    }
-  },
   setup () {
     const loadMore = ref(false)
     const modal = ref(false)
-    function setModal (data) {
-      this.name = data.name
-      this.Title = data.title
-      this.Content = data.content
-      this.Intro = data.intro
+    const name = ref('')
+    const imgs = reactive(['baccarat', 'dragon_tiger', 'xoc_dia', 'hoo_hey_now', 'teen_patti', 'ander_bahar', 'btc_quickWin', 'Pk10', 'fan_tan'])
+    const setModal = (data) => {
+      name.value = data
     }
-    return { modal, setModal, loadMore }
+    return { modal, setModal, loadMore, imgs, name }
   }
 }
 </script>
