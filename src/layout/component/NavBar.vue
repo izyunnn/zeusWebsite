@@ -21,7 +21,7 @@
 <div class="navbar">
   <div class="right">
     <router-link to="/" class="home_link"><img class="logo" src="@/assets/logo.png"/></router-link>
-      <ul>
+      <ul v-if="(device !== 'mobile')">
         <li v-for="item in tableList" :key="item"><router-link class="router-link" :to="item">{{ $t(`tabList.${item}`) }}</router-link></li>
       </ul>
   </div>
@@ -30,12 +30,24 @@
       <img src="@/assets/login.png"/>
       <p>{{ $t('login') }}</p>
     </div>
-    <div class="langSelector" ref="langSelect">
-      <div class="btn" ref="main" @click="isShow = !isShow" @click.stop>
+    <div class="langSelector" ref="lang">
+      <div class="btn" v-if="(device !== 'mobile')" @click="isShow = !isShow" @click.stop>
         <img src="@/assets/lang.png">
         <p>{{ $t('lang') }}</p>
       </div>
-      <div class="list" :class="{on: isShow == true}">
+      <div class="menu" v-else @click="isShow = !isShow">
+        <img src="@/assets/menu.png">
+        <div class="list2" :class="{on: isShow == true}">
+          <ul>
+            <li v-for="item in tableList" :key="item"><router-link :to="item" @click="isShow = !isShow">{{ $t(`tabList.${item}`) }}</router-link></li>
+          </ul>
+          <ul>
+            <div class="title">選擇語系</div>
+            <li v-for="item in langMenu" :key="item.id" @click="$i18n.locale = item.id,isShow = !isShow" @click.stop>{{item.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="list" :class="{on: isShow == true}" v-if="(device !== 'mobile')">
         <ul>
           <li v-for="item in langMenu" :key="item.id" @click="$i18n.locale = item.id,isShow = !isShow" @click.stop>{{item.name}}</li>
         </ul>
@@ -47,18 +59,22 @@
 <script>
 import { useI18n } from 'vue-i18n'
 import { reactive, ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '@/store/app'
 export default ({
   name: 'NavBar',
   component: {},
   mounted () {
     document.addEventListener('click', (e) => {
-      if (!this.$refs.langSelect.contains(e.target)) this.isShow = false
+      if (!this.$refs.lang.contains(e.target)) this.isShow = false
     })
   },
   setup () {
     const { locale, t } = useI18n({ useScope: 'global' })
+    const { device } = storeToRefs(useAppStore())
     const isShow = ref(false)
     const modal = ref(false)
+    // const lang = ref()
     const tableList = reactive(['what', 'about', 'verify'])
     const langMenu = reactive([
       { name: '繁體中文', id: 'zh-TW' },
@@ -66,11 +82,21 @@ export default ({
       { name: '簡體中文', id: 'zh-CN' },
       { name: '日本語', id: 'ja-JP' }
     ])
-    // reload page時不會變回預設
+    /* const langSelect = () => {
+      isShow.value = !isShow.value
+    }
+    onMounted(() => {
+      document.addEventListener('click', langSelect)
+    })
+    onUnmounted(() => {
+      document.removeEventListener('click', langSelect)
+    })
+    */
+    // reload page時不會變回預設語言
     watch(locale, (newlocale) => {
       localStorage.setItem('locale', newlocale)
     })
-    return { isShow, modal, langMenu, locale, t, tableList }
+    return { isShow, modal, langMenu, locale, t, tableList, device }
   }
 })
 </script>
@@ -185,9 +211,8 @@ export default ({
   position: absolute;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5vw;
   width: 100%;
-  height: 100px;
+  height: 60px;
   background-color: $black-70;
   box-shadow: 0 5px 5px $box_shadow;
   box-sizing: border-box;
@@ -196,13 +221,9 @@ export default ({
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    .home_link {
-      width: 275px;
-      height: 60px;
-      .logo{
-      width: 275px;
-      height: 60px;
-      }
+    .logo {
+      margin-left: 10px;
+      width: 36.3vw;
     }
     ul {
       display: flex;
@@ -248,16 +269,15 @@ export default ({
     display: flex;
     align-items: center;
     text-align: center;
-    margin-left: 20vw;
+    margin-left: 6vw;
     box-sizing: border-box;
     .login {
       display: flex;
       align-items: center;
       text-align: center;
-      padding: 15px;
-      margin-right: 30px;
-      width: 7.5vw;
-      height: 2vw;
+      padding: 10px;
+      width: 100px;
+      height: 40px;
       border: 1px solid $orange;
       background: $black;
       cursor: pointer;
@@ -292,13 +312,58 @@ export default ({
           color: $orange;
         }
       }
+      .menu {
+        margin-left: 30px;
+        width: 45px;
+        cursor: pointer;
+        .list2 {
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 255px;
+          height: 0;
+          background: $black-80;
+          transition: max-height .5s;
+          z-index: 5;
+          overflow: hidden;
+          ul {
+            padding: 15px 25px 0;
+            .title {
+              margin-bottom: 15px;
+              padding-bottom: 15px;
+              color: $white;
+              border-bottom: 1px solid $white;
+              font-size: 3.696vw;
+              font-weight: 700;
+            }
+            li {
+              margin-bottom: 15px;
+              color: $orange;
+              font-size: 3.7vw;
+              font-weight: 700;
+              a {
+                margin-bottom: 15px;
+                color: $orange;
+                font-size: 3.7vw;
+                font-weight: 700;
+              }
+            }
+          }
+          ul:last-child {
+            padding-bottom: 10px;
+          }
+        }
+        .on {
+          height: 300px;
+        }
+      }
       .list {
         position: absolute;
         margin-left: 5px;
         top: 50px;
         width: 132px;
         height: 0;
-        z-index: 5;
+        z-index: 10;
         transition: height 0.5s ease 0s;
         overflow: hidden;
         ul {
@@ -328,6 +393,28 @@ export default ({
         height: 176px;
       }
     }
+  }
+}
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 0 5.15vw;
+    height: 100px;
+    .right {
+      .logo {
+        width: 275px;
+      }
+    }
+    .left {
+      margin-left: 20vw;
+      .login {
+        margin-right: 30px;
+      }
+    }
+  }
+}
+@media (min-width: 768) {
+  .navbar {
+    height: 100px;
   }
 }
 </style>
