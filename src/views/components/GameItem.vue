@@ -39,7 +39,7 @@
 <div class="container">
   <div class="title" data-before="GAME ITEMS" data-after="宙斯區塊鏈遊戲"></div>
   <ul>
-    <li v-for="item in imgs.slice(0, 6)" :key="item">
+    <li v-for="item in imgs.slice(0,n)" :key="item" >
       <div class="col-6">
         <img :src="require(`@/assets/games/${item}.png`)" alt=“icon”/>
       </div>
@@ -52,7 +52,7 @@
         </div>
       </div>
     </li>
-    <li v-for="item in imgs.slice(6,9)" :key="item" v-show="loadMore">
+    <li v-for="item in imgs.slice(n,9)" :key="item" v-show="loadMore">
       <div class="col-6">
         <img :src="require(`@/assets/games/${item}.png`)" alt=“icon”/>
       </div>
@@ -61,32 +61,41 @@
         <div class="content">{{ $t(`gameList.${item}_content`) }}</div>
         <div class="btns">
             <img src="@/assets/games/search.png" @click="setModal(item),modal = !modal"/>
-            <img src="@/assets/games/searchGame.png"/>
+            <img src="@/assets/games/searchGame.png" @click="modal2 = !modal2"/>
         </div>
       </div>
     </li>
   </ul>
-  <div class="btn" @click="loadMore = !loadMore">
+  <div class="btn" @click.once="loadMore = !loadMore">
     <p>MORE GAMES</p>
     <img src="@/assets/anchor.png"/>
   </div>
 </div>
 </template>
 <script>
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '@/store/app'
 export default {
   name: 'GameItem',
   components: {},
   setup () {
+    const { device } = storeToRefs(useAppStore())
     const loadMore = ref(false)
     const modal = ref(false)
     const modal2 = ref(false)
     const name = ref('')
+    const n = computed(() => {
+      if (device.value !== 'mobile') {
+        return 6
+      }
+      return 3
+    })
     const imgs = reactive(['baccarat', 'dragon_tiger', 'xoc_dia', 'hoo_hey_now', 'teen_patti', 'ander_bahar', 'btc_quickWin', 'Pk10', 'fan_tan'])
     const setModal = (data) => {
       name.value = data
     }
-    return { modal, modal2, setModal, loadMore, imgs, name }
+    return { modal, modal2, n, setModal, loadMore, imgs, name }
   }
 }
 </script>
@@ -299,7 +308,7 @@ export default {
     flex-direction: column;
     margin: 0 auto;
     padding: 0 15px;
-    width: 80%;
+    width: 100%;
     height: 100%;
     .title {
         display: flex;
@@ -307,20 +316,16 @@ export default {
         align-items: flex-start;
     }
     ul {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
+      width: 68.6vw;
         li {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0.8vw 0.5vw;
-            flex: 0 1 30%;
-            height: 12vw;
+            margin-bottom: 10px;
+            height: 33vw;
             width: 68.6vw;
             border: 2px solid $sky_blue;
-            border-radius: 1vw;
+            border-radius: 2.6vw;
             border-left: none;
             background: $black-50;
             .col-6:first-child {
@@ -331,13 +336,12 @@ export default {
                 justify-content: space-between;
                 align-items: flex-start;
                 flex-direction: column;
-                flex: 1 1 50%;
-                padding: 1vw;
+                padding: 2.6vw;
             }
             .col-6 {
                 img {
-                width: 12vw;
-                height: 12vw;
+                height: 33vw;
+                width: 33vw;
                 border: 2px solid $sky_blue;
                 border-radius: 1vw;
                 }
@@ -358,14 +362,13 @@ export default {
                 color: $white;
                 }
                 .btns{
-                    margin-left: auto;
                     img:first-child {
-                        margin-right: 5px;
-                        margin-left: 4vw;
+                      margin-left: 15vw;
+                      margin-right: 5px;
                     }
                     img{
-                        width: 2.3vw;
-                        height: 2.3vw;
+                        width: 5.6vw;
+                        height: 5.6vw;
                         border: none;
                         cursor: pointer;
                     }
@@ -377,14 +380,14 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 5vw;
-        padding: 1.5vw 2.6vw;
-        width: 22vw;
+        margin-top: 13.2vw;
+        padding: 4vw 6.6vw;
+        width: 55vw;
         border: 2px solid $sky_blue;
         background: $black-50;
         cursor: pointer;
         p {
-            font-size: 2vw;
+            font-size: 5.3vw;
             font-weight: 900;
             color: $white;
             text-shadow: 0 0 0.2em $sky_blue;
@@ -394,5 +397,75 @@ export default {
             width: 2.7vw;
         }
     }
+}
+@media (min-width: 768px) {
+  .container {
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: auto;
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.8vw 0.5vw;
+        flex: 0 1 30%;
+        width: 60vw;
+        height: 12vw;
+        border-radius: 1vw;
+        .col-6 {
+          img {
+            width: 12vw;
+            height: 12vw;
+            border-radius: 0.5vw;
+          }
+          .btns {
+            img:first-child {
+              margin-left: 6vw;
+            }
+            img {
+              width: 2.3vw;
+              height: 2.3vw;
+            }
+          }
+        }
+        .col-6:last-child {
+          padding: 1vw;
+          width: 10vw;
+        }
+      }
+    }
+    .btn {
+      margin-top: 5vw;
+      padding: 1.5vw 2.6vw;
+      width: 22vw;
+      p {
+         font-size: 2vw;
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 960px;
+    ul {
+      li {
+        .col-6:last-child {
+          .btns {
+            img:first-child {
+              margin-left: 4vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1500px;
+  }
 }
 </style>

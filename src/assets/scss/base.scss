@@ -108,28 +108,3 @@ a{
     flex: 1 1 83.3%;
   }
 // }
-
-.container {
-  display: flex;
-  align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	flex-direction: column;
-	// width: 100%;
-	width: 1280px;
-	height: 100%;
-	// padding-right: 15px;
-	// padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
-	// @include ipad-width {
-	// 	flex-direction: row;
-	// 	max-width: 720px;
-	// }
-	// @include desktops-width {
-	// 	max-width: 960px;
-	// }
-	// @include large-desktops-width {
-	// 	max-width: 1280px;
-	// }
-}

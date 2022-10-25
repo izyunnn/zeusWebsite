@@ -36,8 +36,8 @@ export default {
   width: 100%;
 }
 .home_game{
-  padding: 6.2vw 0;
-  height: 142.6vw;
+  padding: 15.8vw 0;
+  min-height: 142.6vw;
   background-image: url("@/assets/homepage/content2.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -54,6 +54,10 @@ export default {
     .home_black {
       height: 54vw;
       background-image: unset;
+    }
+    .home_game {
+      padding: 6.2vw 0;
+      min-height: 55.7vw;
     }
   }
 }

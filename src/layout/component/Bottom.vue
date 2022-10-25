@@ -35,7 +35,7 @@ export default {
   background-position: center;
   z-index: 0;
   img {
-    width: 16.3vw;
+    width: 41.84vw;
   }
   p {
     margin-top: 3vw;
@@ -58,6 +58,13 @@ export default {
     img {
       width: 2.5vw;
       transform: rotate(-90deg);
+    }
+  }
+}
+@media (min-width: 768px) {
+  .bottom {
+    img {
+      width: 16.3vw;
     }
   }
 }
