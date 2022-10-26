@@ -39,7 +39,7 @@
         <img src="@/assets/menu.png">
         <div class="list2" :class="{on: isShow == true}">
           <ul>
-            <li v-for="item in tableList" :key="item"><router-link :to="item" @click="isShow = !isShow">{{ $t(`tabList.${item}`) }}</router-link></li>
+            <li v-for="item in tableList" :key="item"><router-link :to="item" @click="isShow == false">{{ $t(`tabList.${item}`) }}</router-link></li>
           </ul>
           <ul>
             <div class="title">選擇語系</div>
