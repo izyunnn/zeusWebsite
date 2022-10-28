@@ -1,9 +1,9 @@
 <template>
 <div class="modal" v-if="modal">
     <div class="gameDetail">
-        <img src="@/assets/modal/cancel.png" @click="modal = !modal"/>
+        <img class= "cancel" src="@/assets/modal/cancel.png" @click="modal = !modal"/>
         <div class="gameDetail_content">
-            <img :src="require(`@/assets/games/${name}.png`)" alt=“icon”/>
+            <img class= "gamePic" :src="require(`@/assets/games/${name}.png`)" alt=“icon”/>
             <div class="info">
                 <p class="title">{{ $t(`gameList.${name}_title`) }}</p>
                 <span>{{ $t(`gameList.${name}_content`) }}</span>
@@ -120,14 +120,13 @@ export default {
     align-items: normal;
     flex-direction: column;
     padding: 0 15px;
-    max-width: 768px;
-    max-height: auto;
-    max-height: 400px;
     width: 90%;
+    max-width: 400px;
+    min-height: 465px;
     border-radius: 20px;
     border: 2px solid $sky_blue;
     background: $black-80;
-    img {
+    .cancel {
       margin: 10px 10px 0 auto;
       width: 48px;
       height: 48px;
@@ -137,20 +136,16 @@ export default {
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      padding: 0 25px 25px;
-      height: 100%;
-      img {
-        width: 300px;
-        height: 300px;
-        margin-bottom: 0;
+      flex-direction: column;
+      .gamePic {
+        width: 80%;
+        margin-bottom: 35px;
       }
       .info {
         display: flex;
         justify-content: center;
-        align-items: flex-end;
+        align-items: center;
         flex-direction: column;
-        padding: 35px 0 0 50px;
-        height: 300px;
         .title {
           font-size: 20px;
           font-weight: 700;
@@ -168,8 +163,7 @@ export default {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          margin: 30px 0 0;
-          margin-top: auto;
+          margin-bottom: 10px;
           width: 160px;
           height: 42px;
           border: 1px solid $sky_blue;
@@ -362,8 +356,9 @@ export default {
                 color: $white;
                 }
                 .btns{
+                  margin-left: auto;
+                  text-align: right;
                     img:first-child {
-                      margin-left: 15vw;
                       margin-right: 5px;
                     }
                     img{
@@ -399,6 +394,30 @@ export default {
     }
 }
 @media (min-width: 768px) {
+  .modal {
+    .gameDetail {
+      padding: 0 15px;
+      max-width: 768px;
+      min-height: auto;
+      max-height: 400px;
+      .gameDetail_content {
+        flex-direction: row;
+        img {
+          width: 300px;
+          height: 300px;
+          margin-bottom: 30px;
+        }
+        .info {
+          align-items: center;
+          padding: 35px 0 0 50px;
+          height: 300px;
+          .btn {
+            margin-top: auto;
+          }
+        }
+      }
+    }
+  }
   .container {
     ul {
       display: flex;
@@ -422,9 +441,6 @@ export default {
             border-radius: 0.5vw;
           }
           .btns {
-            img:first-child {
-              margin-left: 6vw;
-            }
             img {
               width: 2.3vw;
               height: 2.3vw;
@@ -450,17 +466,6 @@ export default {
 @media (min-width: 1024px) {
   .container {
     max-width: 960px;
-    ul {
-      li {
-        .col-6:last-child {
-          .btns {
-            img:first-child {
-              margin-left: 4vw;
-            }
-          }
-        }
-      }
-    }
   }
 }
 @media (min-width: 1200px) {

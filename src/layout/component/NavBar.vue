@@ -31,7 +31,7 @@
       <p>{{ $t('login') }}</p>
     </div>
     <div class="langSelector" ref="lang">
-      <div class="btn" v-if="(device !== 'mobile')" @click="isShow = !isShow" @click.stop>
+      <div class="btn" v-if="(device !== 'mobile')" @click="isShow = !isShow" >
         <img src="@/assets/lang.png">
         <p>{{ $t('lang') }}</p>
       </div>
@@ -276,7 +276,7 @@ export default ({
       align-items: center;
       text-align: center;
       padding: 10px;
-      width: 100px;
+      width: 110px;
       height: 40px;
       border: 1px solid $orange;
       background: $black;
@@ -323,7 +323,7 @@ export default ({
           width: 255px;
           height: 0;
           background: $black-80;
-          transition: max-height .5s;
+          transition: height 0.5s;
           z-index: 5;
           overflow: hidden;
           ul {
