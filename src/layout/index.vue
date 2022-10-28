@@ -1,5 +1,6 @@
 <template>
   <div class="layout">
+    <login-modal/>
     <navbar />
     <app-main />
     <bottom />
@@ -11,12 +12,14 @@ import { AppMain, Navbar, Bottom } from './component'
 import { useAppStore } from '@/store/app'
 import { _isMobile, _isRWD, _isIpad } from '@/lib/Checker'
 import { onMounted, onBeforeMount, onBeforeUnmount } from 'vue'
+import loginModal from '@/layout/component/loginModal.vue'
 export default {
   name: 'LayOut',
   components: {
     AppMain,
     Navbar,
-    Bottom
+    Bottom,
+    loginModal
   },
   setup () {
     const appStore = useAppStore()

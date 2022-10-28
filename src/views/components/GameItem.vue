@@ -52,19 +52,6 @@
         </div>
       </div>
     </li>
-    <li v-for="item in imgs.slice(n,9)" :key="item" v-show="loadMore">
-      <div class="col-6">
-        <img :src="require(`@/assets/games/${item}.png`)" alt=“icon”/>
-      </div>
-      <div class="col-6">
-        <div class="title">{{ $t(`gameList.${item}_title`) }}</div>
-        <div class="content">{{ $t(`gameList.${item}_content`) }}</div>
-        <div class="btns">
-            <img src="@/assets/games/search.png" @click="setModal(item),modal = !modal"/>
-            <img src="@/assets/games/searchGame.png" @click="modal2 = !modal2"/>
-        </div>
-      </div>
-    </li>
   </ul>
   <div class="btn" @click.once="loadMore = !loadMore">
     <p>MORE GAMES</p>
@@ -87,7 +74,12 @@ export default {
     const name = ref('')
     const n = computed(() => {
       if (device.value !== 'mobile') {
+        if (loadMore.value === true) {
+          return 9
+        }
         return 6
+      } else if (loadMore.value === true) {
+        return 9
       }
       return 3
     })
