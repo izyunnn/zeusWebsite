@@ -1,23 +1,5 @@
 <template>
-<div class="modal" v-if="modal">
-    <div class="login">
-        <img src="@/assets/modal/cancel.png" alt="close" @click="modal = !modal"/>
-        <div class="login_content">
-            <img class="logo" src="@/assets/logo.png" alt=“LOGO”/>
-            <div class="input-text">
-              <input id="account" type="text" :placeholder="$t('account')" autocomplete="off">
-            </div>
-            <div class="input-text">
-              <input id="password" type="password" :placeholder="$t('password')" autocomplete="off">
-            </div>
-            <div class="btn">
-              <img src="@/assets/anchor.png"/>
-              <p>登入</p>
-              <img src="@/assets/anchor.png"/>
-            </div>
-        </div>
-    </div>
-</div>
+<LoginModal @close="toggleModal" :modalActive="modalActive"></LoginModal>
 <div class="navbar">
   <div class="right">
     <router-link to="/" class="home_link"><img class="logo" src="@/assets/logo.png"/></router-link>
@@ -26,7 +8,7 @@
       </ul>
   </div>
   <div class="left">
-    <div class="login" @click="modal = !modal">
+    <div class="login" @click="toggleModal">
       <img src="@/assets/login.png"/>
       <p>{{ $t('login') }}</p>
     </div>
@@ -61,9 +43,10 @@ import { useI18n } from 'vue-i18n'
 import { reactive, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/store/app'
+import LoginModal from './loginModal.vue'
 export default ({
   name: 'NavBar',
-  component: {},
+  components: { LoginModal },
   mounted () {
     document.addEventListener('click', (e) => {
       if (!this.$refs.lang.contains(e.target)) this.isShow = false
@@ -73,7 +56,7 @@ export default ({
     const { locale, t } = useI18n({ useScope: 'global' })
     const { device } = storeToRefs(useAppStore())
     const isShow = ref(false)
-    const modal = ref(false)
+    const modalActive = ref(false)
     // const lang = ref()
     const tableList = reactive(['what', 'about', 'verify'])
     const langMenu = reactive([
@@ -96,7 +79,10 @@ export default ({
     watch(locale, (newlocale) => {
       localStorage.setItem('locale', newlocale)
     })
-    return { isShow, modal, langMenu, locale, t, tableList, device }
+    const toggleModal = () => {
+      modalActive.value = !modalActive.value
+    }
+    return { isShow, modalActive, langMenu, locale, t, tableList, device, toggleModal }
   }
 })
 </script>

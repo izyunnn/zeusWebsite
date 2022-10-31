@@ -1,7 +1,7 @@
 <template>
-<div class="modal-2" v-if="modal2">
+<div class="modal-2" v-if="modalActive">
     <div class="login">
-        <img src="@/assets/modal/cancel.png" alt="close" @click="modal2 = !modal2"/>
+        <img src="@/assets/modal/cancel.png" alt="close" @click="close"/>
         <div class="login_content">
             <img class="logo" src="@/assets/logo.png" alt=“LOGO”/>
             <div class="input-text">
@@ -22,14 +22,109 @@
 <script>
 export default {
   name: 'loginModal',
-  setup () {
-    return {}
+  props: ['modalActive'],
+  setup (props, { emit }) {
+    const close = () => {
+      emit('close')
+    }
+    return { close }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~@/assets/scss/color.scss';
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $modal;
+  z-index: 20;
+  .gameDetail {
+    display: flex;
+    justify-content: normal;
+    align-items: normal;
+    flex-direction: column;
+    padding: 0 15px;
+    width: 90%;
+    max-width: 400px;
+    min-height: 465px;
+    border-radius: 20px;
+    border: 2px solid $sky_blue;
+    background: $black-80;
+    .cancel {
+      margin: 10px 10px 0 auto;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+    }
+    .gameDetail_content {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      .gamePic {
+        width: 80%;
+        margin-bottom: 35px;
+      }
+      .info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .title {
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 20px;
+          width: 100%;
+          color: $white;
+        }
+        span {
+          font-size: 16px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          color: $white;
+        }
+        .btn {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-bottom: 10px;
+          width: 160px;
+          height: 42px;
+          border: 1px solid $sky_blue;
+          border-radius: 50px;
+          background: $black-50;
+          cursor: pointer;
+        }
+        img:first-child {
+          transform: rotate(180deg);
+        }
+        img {
+          margin: 0;
+          height: 25px;
+          width: 25px;
+        }
+        .play {
+          text-align: center;
+          margin-bottom: 0;
+          width: auto;
+          font-size: 20px;
+          font-weight: 900;
+          color: $white;
+          text-shadow: 0 0 0.2em $sky_blue;
+        }
+      }
+    }
+  }
+}
 .modal-2 {
   position: fixed;
   display: flex;

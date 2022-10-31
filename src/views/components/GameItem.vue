@@ -17,25 +17,7 @@
         </div>
     </div>
 </div>
-<div class="modal-2" v-if="modal2">
-    <div class="login">
-        <img src="@/assets/modal/cancel.png" alt="close" @click="modal2 = !modal2"/>
-        <div class="login_content">
-            <img class="logo" src="@/assets/logo.png" alt=“LOGO”/>
-            <div class="input-text">
-              <input id="account" type="text" :placeholder="$t('account')" autocomplete="off">
-            </div>
-            <div class="input-text">
-              <input id="password" type="password" :placeholder="$t('password')" autocomplete="off">
-            </div>
-            <div class="btn">
-              <img src="@/assets/anchor.png"/>
-              <p>登入</p>
-              <img src="@/assets/anchor.png"/>
-            </div>
-        </div>
-    </div>
-</div>
+<LoginModal @close="toggleModal" :modalActive="modalActive"></LoginModal>
 <div class="container">
   <div class="title" data-before="GAME ITEMS" data-after="宙斯區塊鏈遊戲"></div>
   <ul>
@@ -48,7 +30,7 @@
         <div class="content">{{ $t(`gameList.${item}_content`) }}</div>
         <div class="btns">
             <img src="@/assets/games/search.png" @click="setModal(item),modal = !modal"/>
-            <img src="@/assets/games/searchGame.png" @click="modal2 = !modal2"/>
+            <img src="@/assets/games/searchGame.png" @click="toggleModal"/>
         </div>
       </div>
     </li>
@@ -63,14 +45,15 @@
 import { computed, reactive, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/store/app'
+import LoginModal from '@/layout/component/loginModal.vue'
 export default {
   name: 'GameItem',
-  components: {},
+  components: { LoginModal },
   setup () {
     const { device } = storeToRefs(useAppStore())
     const loadMore = ref(false)
     const modal = ref(false)
-    const modal2 = ref(false)
+    const modalActive = ref(false)
     const name = ref('')
     const n = computed(() => {
       if (device.value !== 'mobile') {
@@ -87,7 +70,10 @@ export default {
     const setModal = (data) => {
       name.value = data
     }
-    return { modal, modal2, n, setModal, loadMore, imgs, name }
+    const toggleModal = () => {
+      modalActive.value = !modalActive.value
+    }
+    return { modal, n, setModal, loadMore, imgs, name, toggleModal, modalActive }
   }
 }
 </script>
