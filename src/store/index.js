@@ -1,8 +1,6 @@
 import { createStore } from 'vuex'
 export default createStore({
-  state: {
-    Modal2: false
-  },
+  state: {},
   getters: {},
   mutations: {},
   actions: {

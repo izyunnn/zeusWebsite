@@ -48,6 +48,7 @@ export default ({
   name: 'NavBar',
   components: { LoginModal },
   mounted () {
+    // 點擊空白處關閉langSelect
     document.addEventListener('click', (e) => {
       if (!this.$refs.lang.contains(e.target)) this.isShow = false
     })
@@ -65,16 +66,7 @@ export default ({
       { name: '簡體中文', id: 'zh-CN' },
       { name: '日本語', id: 'ja-JP' }
     ])
-    /* const langSelect = () => {
-      isShow.value = !isShow.value
-    }
-    onMounted(() => {
-      document.addEventListener('click', langSelect)
-    })
-    onUnmounted(() => {
-      document.removeEventListener('click', langSelect)
-    })
-    */
+
     // reload page時不會變回預設語言
     watch(locale, (newlocale) => {
       localStorage.setItem('locale', newlocale)
